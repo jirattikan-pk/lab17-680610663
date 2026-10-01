@@ -41,14 +41,14 @@ export const useEnrollmentStore = create<EnrollmentStore>()(
       addCourse: (course) =>
         set((state) => ({ courses: [...state.courses, course] })),
 
-      removeInstructorFromCourse: (courseId, email) =>
+      removeInstructorFromCourse: (courseId, instructor) =>
         set((state) => ({
           courses: state.courses.map((course) =>
             course.courseId === courseId
               ? {
                   ...course,
                   instructors: course.instructors.filter(
-                    (name) => name.email.toLowerCase() !== email.toLowerCase(),
+                    (i) => i.name.toLowerCase() !== instructor.toLowerCase(),
                   ),
                 }
               : course,
